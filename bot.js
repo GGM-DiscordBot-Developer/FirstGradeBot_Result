@@ -1,17 +1,32 @@
 const fs = require('fs');
 const Timetable = require('comcigan-parser');
 const TimetableReader = require('./timetableReader');
-const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
+const { Client, GatewayIntentBits, EmbedBuilder, ActivityType } = require('discord.js');
 const client = new Client({intents : [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]});
-
-var timetableEmbed = new EmbedBuilder()
-.setColor(`#ff9696`)
-.setTitle('**시간표** :calendar_spiral:')
-.setFooter({text : 'Made by DevSeok & SEH00N'});
 
 const nameFile = require('./teacherName.json');
 const dayFile = require('./day.json');
 const classFile = require('./class.json');
+const iconURL = "https://cdn.discordapp.com/attachments/953627968222138389/1007704753205157978/ggmboticon.png";
+
+var timetableEmbed = new EmbedBuilder()
+.setColor(`#ff9696`)
+.setTitle('**시간표** :calendar_spiral:')
+.setFooter({text : 'Made by DevSeok & SEH00N', iconURL : iconURL});
+
+var helpEmbed = new EmbedBuilder()
+.setColor(`#24acf2`)
+.setTitle('**명령어** :calendar_spiral:')
+.setFields(
+    { name : "!시간표", value : "시간표 명령어를 알려줍니다." },
+    { name : "!시간표 N학년 N반", value : "N학년 N반의 당일 시간표를 알려줍니다." },
+    { name : "!시간표 N학년 N반 N요일", value : "N학년 N반의 특정 요일 시간표를 알려줍니다." }
+)
+.setFooter({text : 'Made by DevSeok & SEH00N', iconURL : iconURL});
+
+client.on('ready', () => {
+    client.user.setActivity({name : '!시간표', type : ActivityType.Playing});
+});
 
 client.on('messageCreate', msg => {
     if(!msg.content.startsWith('!')) return;
@@ -22,7 +37,12 @@ client.on('messageCreate', msg => {
     switch(args[0])
     {
         case '시간표':
-            if(args[1] == undefined || Object.keys(classFile).indexOf(args[1][0]) == -1)
+            if(args[1] == undefined)
+            {
+                msg.channel.send({embeds : [helpEmbed]});
+                return;
+            }
+            if(Object.keys(classFile).indexOf(args[1][0]) == -1)
             {
                 msg.reply("올바른 학년을 입력해주세요.");
                 return;
@@ -43,7 +63,7 @@ client.on('messageCreate', msg => {
         }
     });
     
-client.login(require('../HappyBirthday/token.json').token);
+client.login(require('../tokens.json').GGMBot);
     
 const GetTimetableEmbed = (args, date) => {
     TimetableReader.GetComci();
