@@ -81,8 +81,13 @@ const GetTimetableEmbed = (args, date) => {
                 field += `${today} ${index + 1}교시 시간표가 없습니다.\n`;
                 return;
             }
-            if(nameFile[cell['teacher']] == undefined) console.log(cell['teacher']);
-            
+            // 디버그 위해 수정됨.
+            if(nameFile[cell['teacher']] == undefined) 
+            {
+                console.log(cell['teacher']);
+                field += `**${index + 1}**교시 ${cell['teacher']}* 선생님 **${cell['subject']}**\n`;
+            }
+            else
             field += `**${index + 1}**교시 ${nameFile[cell['teacher']]} 선생님 **${cell['subject']}**\n`;
         });
 
