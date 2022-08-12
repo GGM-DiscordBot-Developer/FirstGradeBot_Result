@@ -1,27 +1,25 @@
 {
   "name": "ggmbot",
   "version": "1.0.0",
+  "description": "박세훈과 함께하는 1학년 디코봇 개발",
   "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GGM-DiscordBot-Developer/GGMBot.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GGM-DiscordBot-Developer/GGMBot/issues"
+  },
+  "homepage": "https://github.com/GGM-DiscordBot-Developer/GGMBot#readme",
   "dependencies": {
     "comcigan-parser": "^1.0.0",
     "discord.js": "^14.2.0",
     "fs": "^0.0.1-security",
     "request": "^2.88.2"
-  },
-  "description": "박세훈과 함께하는 1학년 디코봇 개발",
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GGM-DiscordBot-Developer/GGMBot.git"
-  },
-  "bugs": {
-    "url": "https://github.com/GGM-DiscordBot-Developer/GGMBot/issues"
-  },
-  "homepage": "https://github.com/GGM-DiscordBot-Developer/GGMBot#readme"
+  }
 }
