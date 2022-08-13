@@ -17,8 +17,8 @@ var helpEmbed = new EmbedBuilder()
 .setTitle('**명령어** :calendar_spiral:')
 .setFields(
     { name : "!시간표", value : "시간표 명령어를 알려줍니다." },
-    { name : "!시간표 N학년 N반", value : "N학년 N반의 당일 시간표를 알려줍니다." },
-    { name : "!시간표 N학년 N반 N요일", value : "N학년 N반의 특정 요일 시간표를 알려줍니다." }
+    { name : "!시간표 [학년] [반] or !시간표 N학년 N반", value : "N학년 N반의 당일 시간표를 알려줍니다." },
+    { name : "!시간표 [학년] [반] [요일] or !시간표 N학년 N반 N요일", value : "N학년 N반의 특정 요일 시간표를 알려줍니다." }
 )
 .setFooter({text : 'Made by DevSeok & SEH00N', iconURL : iconURL});
 
@@ -68,7 +68,10 @@ const GetTimetableEmbed = (args, date) => {
     var file = require('./timetable.json');
     let field = '';
 
-    const day = (args[3] == undefined ) ? date.getDay() - 1 : dayFile[args[3]];
+    // 일요일 0 처리됨. 핫픽스
+    let day = (args[3] == undefined ) ? date.getDay() - 1 : dayFile[args[3]];
+    if(day == -1) day += 7; 
+    // 핫픽스
     const today = Object.keys(dayFile)[day];
     if(day > 4) 
         field += `${today}은 주말입니다!`;
@@ -89,7 +92,7 @@ const GetTimetableEmbed = (args, date) => {
             field += `**${index + 1}**교시 ${nameFile[cell['teacher']]} 선생님 **${cell['subject']}**\n`;
         });
 
-    timetableEmbed.setFields({name : `${args[1]} ${args[2]} ${today} 시간표`, value : field});
+    timetableEmbed.setFields({name : `${args[1][0]}학년 ${args[2][0]}반 ${today} 시간표`, value : field});
 
     return timetableEmbed;
 };
