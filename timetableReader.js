@@ -11,6 +11,13 @@ const GetComci = () => {
       timetable.getTimetable().then(x => {
         fs.writeFileSync('./timetable.json', JSON.stringify(x));
       });
+      timetable.getClassTime().then(x => {
+        var timeData = {};
+        x.forEach(string => {
+          timeData[string[0]] = string.split('(')[1].replace(')', "");
+        })
+        fs.writeFileSync('./classTime.json', JSON.stringify(timeData));
+      })
     });
   });
 }
