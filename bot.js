@@ -68,10 +68,8 @@ const GetTimetableEmbed = (args, date) => {
     var file = require('./timetable.json');
     let field = '';
 
-    // 일요일 0 처리됨. 핫픽스
     let day = (args[3] == undefined ) ? date.getDay() - 1 : dayFile[args[3]];
     if(day == -1) day += 7; 
-    // 핫픽스
     const today = Object.keys(dayFile)[day];
     if(day > 4) 
         field += `${today}은 주말입니다!`;
