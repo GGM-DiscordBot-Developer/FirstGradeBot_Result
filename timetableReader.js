@@ -15,7 +15,7 @@ const GetComci = () => {
         var timeData = {};
         x.forEach(string => {
           timeData[string[0]] = string.split('(')[1].replace(')', "");
-        })
+        });
         fs.writeFileSync('./classTime.json', JSON.stringify(timeData));
       })
     });

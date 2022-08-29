@@ -71,6 +71,7 @@ const GetTimetableEmbed = (args, date) => {
 
     let day = (args[3] == undefined) ? date.getDay() - 1 : dayFile[args[3]];
     if (day == -1) day += 7;
+    console.log(day);
     const today = Object.keys(dayFile)[day];
     timetableEmbed.setTitle(`${args[1][0]}학년 ${args[2][0]}반 ${today} 시간표 :calendar_spiral:`);
 
@@ -94,10 +95,14 @@ const GetTimetableEmbed = (args, date) => {
             timetableEmbed.setTitle(`${args[1][0]}학년 ${args[2][0]}반 현재 시간표 :calendar_spiral:`);
             if (cell['teacher'] == '') {
                 timetableEmbed.addFields({
-                    name: `${period + 1}교시`,
+                    name: `현재 ${period + 1}교시`,
+                    value: "수업이 없습니다."
+                },
+                {
+                    name: `다음 ${period + 2}교시`,
                     value: "수업이 없습니다."
                 });
-                return;
+                return timetableEmbed;
             }
             timetableEmbed.addFields({ name: `현재 ${period + 1}교시 ${subjectFile[cell.subject]}`, value: `${nameFile[cell.teacher]} 선생님` });
             if (period + 1 != 9)
