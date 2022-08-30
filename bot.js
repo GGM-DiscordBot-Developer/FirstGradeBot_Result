@@ -25,7 +25,9 @@ var helpEmbed = new EmbedBuilder()
 
 client.on('ready', () => {
     client.user.setActivity({ name: '!시간표', type: ActivityType.Playing });
+    console.log("Bot on");
 });
+
 
 client.on('messageCreate', msg => {
     if (!msg.content.startsWith('!')) return;
@@ -58,7 +60,7 @@ client.on('messageCreate', msg => {
     }
 });
 
-client.login(require('../tokens.json').GGMBot);
+client.login('MTAwNzcwMDEwOTQzMTE1MjY4MQ.GvAyqT.ObxIQCzqOYz4YgcWapIteluHMm3qcKMv6NcKg4');
 
 /**
  * @param {string[]} args 
@@ -105,7 +107,7 @@ const GetTimetableEmbed = (args, date) => {
                 return timetableEmbed;
             }
             timetableEmbed.addFields({ name: `현재 ${period + 1}교시 ${subjectFile[cell.subject]}`, value: `${nameFile[cell.teacher]} 선생님` });
-            if (period + 1 != 9)
+            if (period + 1 != 9 && subjectFile[nextCell.subject] != undefined)
                 timetableEmbed.addFields({ name: `다음 ${period + 2}교시 ${subjectFile[nextCell.subject]}`, value: `${nameFile[nextCell.teacher]} 선생님` });
             else
                 timetableEmbed.addFields({ name: `다음 교시`, value: "수업이 없습니다." });
