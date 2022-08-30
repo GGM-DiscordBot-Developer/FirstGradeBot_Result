@@ -60,7 +60,7 @@ client.on('messageCreate', msg => {
     }
 });
 
-client.login('MTAwNzcwMDEwOTQzMTE1MjY4MQ.GvAyqT.ObxIQCzqOYz4YgcWapIteluHMm3qcKMv6NcKg4');
+client.login('');
 
 /**
  * @param {string[]} args 
