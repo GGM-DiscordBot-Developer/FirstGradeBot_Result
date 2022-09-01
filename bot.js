@@ -36,14 +36,19 @@ client.on('messageCreate', msg => {
     const args = msg.content.split('!')[1].split(' ');
     console.log(args);
     switch (args[0]) {
+        case '살아나라':
+            console.log(msg.author.tag);
+            if(args[1] == '얍' && (msg.author.tag == "박세훈#4860" || msg.author.tag == "곽석현#9999"))
+                msg.reply('살아났다 얍');
+            break;
         case '살아있냐':
             console.log(msg.author.tag);
-            if(msg.author.tag == "박세훈#4860")
+            if(msg.author.tag == "박세훈#4860" || msg.author.tag == "곽석현#9999")
                 msg.reply('ㅇㅇ;');
             break;
         case '뒤짐?':
             console.log(msg.author.tag);
-            if(msg.author.tag == "박세훈#4860") 
+            if(msg.author.tag == "박세훈#4860" || msg.author.tag == "곽석현#9999") 
                 msg.reply('살았다고;');
             break;
         case '시간표':
