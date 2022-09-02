@@ -22,4 +22,6 @@ const GetComci = () => {
   });
 }
 
+GetComci();
+
 exports.GetComci = GetComci;
