@@ -1,4 +1,4 @@
-const TimetableReader = require('./timetableReader');
+const TimetableReader = require('./timetableReader.js');
 const { Client, GatewayIntentBits, EmbedBuilder, ActivityType } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
@@ -31,6 +31,23 @@ client.on('ready', () => {
 
 client.on('messageCreate', msg => {
     if (!msg.content.startsWith('!')) return;
+    console.log(msg.guild.name);
+    // if(msg.content == "!삭제")
+    // {
+    //     console.log("삭제");
+    //     msg.channel.messages.fetch().then(mss => {
+    //         mss.forEach(item => {
+    //             console.log(item.author.tag);
+    //             if(item.author.tag == "겜마고 시간표#0242")
+    //             {
+    //                 console.log("delete comp");
+    //                 console.log(item.id);
+    //                 item.delete();
+    //             }
+    //         });
+    //     })
+    // }
+    // return;
     var date = new Date();
 
     const args = msg.content.split('!')[1].split(' ');
@@ -75,7 +92,7 @@ client.on('messageCreate', msg => {
     }
 });
 
-client.login('');
+client.login(require('./token.json').GGMBot);
 
 /**
  * @param {string[]} args 
@@ -88,7 +105,7 @@ const GetTimetableEmbed = (args, date) => {
 
     let day = (args[3] == undefined) ? date.getDay() - 1 : dayFile[args[3]];
     if (day == -1) day += 7;
-    console.log(day);
+    console.log(`today : ${day}`);
     const today = Object.keys(dayFile)[day];
     timetableEmbed.setTitle(`${args[1][0]}학년 ${args[2][0]}반 ${today} 시간표 :calendar_spiral:`);
 
