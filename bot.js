@@ -1,6 +1,6 @@
 const TimetableReader = require('./timetableReader.js');
-const { Client, GatewayIntentBits, EmbedBuilder, ActivityType } = require('discord.js');
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
+const { Client, GatewayIntentBits, EmbedBuilder, ActivityType, Intents } = require('discord.js');
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, Intents.FLAGS.DIRECT_MESSAGES] });
 
 const nameFile = require('./teacherName.json');
 const dayFile = require('./day.json');
@@ -92,7 +92,7 @@ client.on('messageCreate', msg => {
     }
 });
 
-client.login(require('./token.json').GGMBot);
+client.login('MTAwNzcwMDEwOTQzMTE1MjY4MQ.GR-JS_.e-qTLBL-7LZ7aNKei9XNIpRSOideU_5ZRILkfA');
 
 /**
  * @param {string[]} args 
