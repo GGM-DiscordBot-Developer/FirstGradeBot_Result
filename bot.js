@@ -1,6 +1,18 @@
 const TimetableReader = require('./timetableReader.js');
-const { Client, GatewayIntentBits, EmbedBuilder, ActivityType, Intents } = require('discord.js');
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, Intents.FLAGS.DIRECT_MESSAGES] });
+const { Client, GatewayIntentBits, EmbedBuilder, ActivityType, Partials } = require('discord.js');
+const client = new Client({ 
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages, 
+        GatewayIntentBits.MessageContent, 
+        GatewayIntentBits.DirectMessages, 
+        GatewayIntentBits.DirectMessageTyping,
+        GatewayIntentBits.DirectMessageReactions
+    ],
+    partials: [
+        Partials.Channel,
+        Partials.Message
+    ]});
 
 const nameFile = require('./teacherName.json');
 const dayFile = require('./day.json');
@@ -29,9 +41,9 @@ client.on('ready', () => {
 });
 
 
-client.on('messageCreate', msg => {
+client.on('messageCreate', (msg) => {
     if (!msg.content.startsWith('!')) return;
-    console.log(msg.guild.name);
+
     // if(msg.content == "!삭제")
     // {
     //     console.log("삭제");
@@ -92,7 +104,7 @@ client.on('messageCreate', msg => {
     }
 });
 
-client.login('MTAwNzcwMDEwOTQzMTE1MjY4MQ.GR-JS_.e-qTLBL-7LZ7aNKei9XNIpRSOideU_5ZRILkfA');
+client.login(require('./token.json'));
 
 /**
  * @param {string[]} args 
