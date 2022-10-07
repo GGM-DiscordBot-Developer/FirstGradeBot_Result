@@ -63,7 +63,9 @@ client.on('messageCreate', (msg) => {
     var date = new Date();
 
     const args = msg.content.split('!')[1].split(' ');
-    console.log(args);
+    
+    client.channels.cache.get('1027965018874060971').send(date.getTime() + args);
+
     switch (args[0]) {
         case '살아나라':
             console.log(msg.author.tag);
