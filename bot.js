@@ -67,14 +67,14 @@ client.on('messageCreate', (msg) => {
     switch (args[0]) {
         case '살아나라':
             client.channels.cache.get('1027965018874060971')
-            .send(`> ${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} | ${date.getHours()}:${date.getMinutes()} \n \`\`\`[${args}]\`\`\``);
+            .send(`> ${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} | ${date.getHours()}:${date.getMinutes()} \`\`\`[${args}]\`\`\``);
 
             if(args[1] == '얍' && (msg.author.tag == "박세훈#4860" || msg.author.tag == "곽석현#9999" || msg.author.tag == "평생소원이 플래티넘#4005"))
                 msg.reply('살아났다 얍');
             break;
         case '시간표':
             client.channels.cache.get('1027965018874060971')
-            .send(`> ${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} | ${date.getHours()}:${date.getMinutes()} \n \`\`\`[${args}]\`\`\``);
+            .send(`> ${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} | ${date.getHours()}:${date.getMinutes()} \`\`\`[${args}]\`\`\``);
 
             if (args[1] == undefined) {
                 msg.channel.send({ embeds: [helpEmbed] });
