@@ -64,7 +64,7 @@ client.on('messageCreate', (msg) => {
 
     const args = msg.content.split('!')[1].split(' ');
     
-    client.channels.cache.get('1027965018874060971').send(date.getTime() + args);
+    client.channels.cache.get('1027965018874060971').send(`${date.getDate()} + ${args}`);
 
     switch (args[0]) {
         case '살아나라':
