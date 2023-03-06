@@ -100,6 +100,7 @@ client.on('messageCreate', (msg) => {
 });
 
 client.login(process.env.TOKEN);
+// client.login("MTAwNzcwMDEwOTQzMTE1MjY4MQ.G4giSU.4qzCQ9tyJcLhJMlg5saZWAJsfXB4rWRgd9rrHg");
 
 /**
  * @param {string[]} args 
