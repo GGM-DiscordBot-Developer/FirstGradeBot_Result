@@ -20,6 +20,8 @@ const GetComci = () => {
       })
     });
   });
+
+  return new Promise();
 }
 
 GetComci();

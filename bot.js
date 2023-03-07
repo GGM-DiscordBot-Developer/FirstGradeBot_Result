@@ -21,6 +21,8 @@ const subjectFile = require('./subject.json');
 const timeFile = require('./classTime.json');
 const iconURL = "https://cdn.discordapp.com/attachments/953627968222138389/1007704753205157978/ggmboticon.png";
 
+let systemData = new Date();
+
 var timetableEmbed = new EmbedBuilder()
     .setColor(`#ff9696`)
     .setFooter({ text: 'Made by DevSeok & SEH00N', iconURL: iconURL });
@@ -39,7 +41,6 @@ client.on('ready', () => {
     client.user.setActivity({ name: '!시간표', type: ActivityType.Playing });
     console.log("Bot on");
 });
-
 
 client.on('messageCreate', (msg) => {
     if (!msg.content.startsWith('!')) return;
@@ -105,9 +106,9 @@ client.login(process.env.TOKEN);
  * @param {string[]} args 
  * @param {Date} date 
  * @returns 
- */
-const GetTimetableEmbed = (args, date) => {
-    TimetableReader.GetComci();
+*/
+async function GetTimetableEmbed(args, date){
+    await TimetableReader.GetComci();
     var file = require('./timetable.json');
 
     let day = (args[3] == undefined) ? date.getDay() - 1 : dayFile[args[3]];
