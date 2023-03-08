@@ -8,6 +8,7 @@ const GetComci = () => {
     timetable.search('경기게임').then(x => {
       console.log(x[0].code);
       timetable.setSchool(x[0].code);
+      console.log('asd');
       timetable.getTimetable().then(x => {
         fs.writeFileSync('./timetable.json', JSON.stringify(x));
       });
@@ -20,10 +21,8 @@ const GetComci = () => {
       })
     });
   });
-
-  return new Promise();
 }
 
-GetComci();
+// GetComci();
 
 exports.GetComci = GetComci;
